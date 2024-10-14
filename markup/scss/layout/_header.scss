@@ -1,0 +1,183 @@
+#header {
+	@include animate(right padding);
+
+	background-color: transparent;
+	padding: 13px 0;
+	position: fixed;
+	right: 0;
+	left: 0;
+	z-index: 5;
+
+	&.fixed-position {
+		background-color: #ff5c5a;
+		padding: 5px 0;
+	}
+}
+
+.header-frame {
+	@include animate(margin);
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 15px;
+
+	@include media(">=tablet") {
+		padding: 0 30px;
+	}
+
+	.nav-active & {
+
+		@include media(">=tablet") {
+			margin-right: 310px;
+		}
+	}
+
+	.holder {
+		width: calc(100% - 72px);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		padding-top: 2px;
+	}
+}
+
+
+.navigation {
+	display: flex;
+
+	ul {
+		@extend %listreset;
+
+		li {
+			a {
+				@include animate(color);
+
+				text-transform: uppercase;
+				color: $white;
+
+				&:hover {
+					color: $black;
+				}
+			}
+		}
+	}
+
+	.nav-top {
+		padding-bottom: 20px;
+
+		li {
+			padding: 11px 0;
+			font-size: 21px;
+		}
+	}
+
+	.nav-bottom {
+		padding-top: 30px;
+		li {
+			padding: 5px 0;
+
+			a {
+				text-transform: none;
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+#nav {
+	display: flex;
+}
+
+.nav-slide {
+	@include animate(right);
+	
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	right: -9999px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100vh;
+	background-color: #ff5c5a;
+	padding: 30px 34px;
+	word-break: break-all;
+
+	@include media("<tablet") {
+		overflow: scroll;
+	}
+
+	@include media(">=tablet") {
+		border-left: 2px solid #d94c4a;
+		width: 310px;
+	}
+}
+
+.logo {
+	width: 72px;
+}
+
+.header-link{
+	@include animate(color);
+
+	color: $white;
+	text-transform: uppercase;
+	font-weight: 500;
+	padding: 0 17px;
+	display: none;
+	font-size: 13px;
+
+	&:hover {
+		color: $red-primary;
+
+		.fixed-position & {
+			color: $black;
+		}
+	}
+
+	@include media(">=tablet") {
+		display: block;
+	}
+}
+
+.nav-active {
+	.nav-slide {
+		right: 0;
+	}
+}
+
+.nav-opener {
+	display: block;
+	width: 25px;
+	height: 40px;
+	position: relative;
+	z-index: 1;
+	margin-left: 11px;
+
+	&:before,
+	&:after,
+	span {
+		@include animate(all);
+
+		background: $white;
+		border-radius: 4px;
+		position: absolute;
+		top: 17px;
+		left: 15%;
+		right: 15%;
+		height: 3px;
+	}
+
+	&:before,
+	&:after {
+		content: "";
+		top: 11px;
+	}
+
+	&:after {
+		top: 23px;
+	}
+}
